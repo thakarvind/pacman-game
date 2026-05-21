@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pac-Man Arcade Neon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-decorations">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <div class="arcade-container">
+        <!-- Main Game Area -->
+        <main class="arcade-cabinet">
+            <div class="cabinet-marquee">
+                <span class="marquee-text">PAC-MAN</span>
+                <span class="marquee-subtext">NEON EDITION</span>
+            </div>
+            
+            <div class="screen-container">
+                <div class="screen-glare"></div>
+                <!-- Game Canvas -->
+                <canvas id="game-canvas" width="448" height="576"></canvas>
+
+                <!-- UI Overlays (Start/Game Over/Pause) -->
+                <div id="screen-overlay" class="screen-overlay active">
+                    <div class="overlay-content">
+                        <h1 id="overlay-title">READY!</h1>
+                        <p id="overlay-subtitle">Press START to Play</p>
+                        <button id="overlay-btn" class="arcade-btn-pulse">START GAME</button>
+                    </div>
+                </div>
+            </div>
+
+
+        </main>
+
+        <!-- Sidebar Dashboard Controls -->
+        <aside class="dashboard">
+            <div class="dash-card score-card">
+                <h2 class="font-arcade card-title">SCOREBOARD</h2>
+                <div class="score-display">
+                    <div class="score-box">
+                        <span class="score-label font-arcade">SCORE</span>
+                        <span id="score-val" class="score-num font-arcade">000000</span>
+                    </div>
+                    <div class="score-box">
+                        <span class="score-label font-arcade font-glow">HIGH</span>
+                        <span id="highscore-val" class="score-num font-arcade font-glow">000000</span>
+                    </div>
+                </div>
+                <div class="status-row">
+                    <div class="status-item">
+                        <span class="font-arcade">LIVES:</span>
+                        <div id="lives-container" class="lives-indicator">
+                            <!-- JS will inject life icons -->
+                        </div>
+                    </div>
+                    <div class="status-item">
+                        <span class="font-arcade">STAGE:</span>
+                        <span id="level-val" class="font-arcade font-glow">1</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dash-card settings-card">
+                <h2>SETTINGS</h2>
+                
+                <div class="control-group">
+                    <label for="theme-select">Visual Theme</label>
+                    <div class="custom-select-wrapper">
+                        <select id="theme-select" class="custom-select">
+                            <option value="classic">Retro Neon Blue</option>
+                            <option value="cyberpunk">Cyberpunk Purple</option>
+                            <option value="matrix">Matrix Green</option>
+                            <option value="monochrome">Ghostly White</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label for="difficulty-select">Difficulty</label>
+                    <div class="custom-select-wrapper">
+                        <select id="difficulty-select" class="custom-select">
+                            <option value="easy">Casual (Easy)</option>
+                            <option value="normal" selected>Arcade (Normal)</option>
+                            <option value="hard">Hardcore (Fast)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="settings-toggles">
+                    <button id="sfx-toggle-btn" class="panel-btn">
+                        <span class="btn-icon">🔊</span> Sound Effects: <span id="sfx-status" class="toggle-status active">ON</span>
+                    </button>
+                </div>
+
+                <div class="button-row">
+                    <button id="start-btn" class="action-btn primary-btn font-arcade">START</button>
+                    <button id="reset-btn" class="action-btn secondary-btn font-arcade">RESET</button>
+                </div>
+            </div>
+
+            <div class="dash-card leaderboard-card">
+                <h2 class="font-arcade card-title">LEADERBOARD</h2>
+                <div class="table-container">
+                    <table id="leaderboard-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>NAME</th>
+                                <th>SCORE</th>
+                                <th>LVL</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-body">
+                            <!-- Leaderboard list will be injected here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Help Card -->
+            <div class="dash-card help-card">
+                <h2>CONTROLS</h2>
+                <div class="help-content">
+                    <p>⌨️ <strong>Keyboard:</strong> Use Arrow Keys or W, A, S, D to steer.</p>
+                    <p>📱 <strong>Mobile:</strong> Swipe anywhere on canvas or drag the arcade joystick.</p>
+                    <p>⏸️ <strong>Pause:</strong> Spacebar or Pause button.</p>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Load Game Scripts -->
+    <script src="audio.js"></script>
+    <script src="ghosts.js"></script>
+    <script src="game.js"></script>
+    <script src="ui.js"></script>
+</body>
+</html>
